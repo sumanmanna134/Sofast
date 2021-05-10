@@ -14,5 +14,16 @@ Dependency Injection : [Provider]()
 
 ## Developer Mode 
 
+```
+npm i
+npm run dev
+```
+
+## Production Mode
+
+```
+npm i
+npm run prod
+```
 
 <!-- ## API -->
