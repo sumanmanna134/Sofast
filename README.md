@@ -12,7 +12,9 @@ State Management(Mobile) : [MobX](),[RxDart]().
 
 Dependency Injection : [Provider]()
 
-## Developer Mode 
+Api: http://localhost:7000/api/v1
+
+## Developer Mode
 
 ```
 npm i
@@ -26,4 +28,14 @@ npm i
 npm run prod
 ```
 
-<!-- ## API -->
+## API
+
+### Product-Api
+
+| Endpoints          | Method | Description                  |
+| ------------------ | ------ | ---------------------------- |
+| /product           | GET    | Get All products             |
+| /admin/product/new | POST   | Create a Product             |
+| /product/:id       | GET    | Get product details by Id    |
+| /product/:id       | PUT    | Update product details by Id |
+| /product/:id       | DELETE | Delete product by Id         |
