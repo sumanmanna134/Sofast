@@ -2,17 +2,21 @@ const Product = require('../models/product');
 
 const ErrorHandler = require('../utils/errorHandler');
 
+const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
+
+
+
 //create new product  => /api/v1/products/new
 
-exports.newProducts = async(req, res, next) => {
+exports.newProducts = catchAsyncErrors (async(req, res, next) => {
     const product = await Product.create(req.body);
     res.status(201).json({
         success:true,
         product
     })
-}
+})
 
-exports.getProducts = async (req, res, next)=> {
+exports.getProducts = catchAsyncErrors (async (req, res, next)=> {
 
     const product = await Product.find()
 
@@ -22,11 +26,11 @@ exports.getProducts = async (req, res, next)=> {
         totalProds : product.length,
         product
     })
-}
+})
 
 //get single product details => /api/v1/product/:id
 
-exports.getSingleProduct = async (req, res, next) => {
+exports.getSingleProduct = catchAsyncErrors (async (req, res, next) => {
     const prod = await Product.findById(req.params.id);
     if(!prod){
         return next(new ErrorHandler('product not found', 404));
@@ -36,10 +40,10 @@ exports.getSingleProduct = async (req, res, next) => {
         success: true,
         prod
     })
-}
+})
 
 //update product details => /api/v1/admin/product/:id
-exports.updateProduct = async (req, res, next) => {
+exports.updateProduct = catchAsyncErrors (async (req, res, next) => {
     let product = await Product.findById(req.params.id);
     if(!product){
         return next(new ErrorHandler('product not found', 404));
@@ -55,12 +59,12 @@ exports.updateProduct = async (req, res, next) => {
         success: true,
         message : 'product updated'
     });
-}
+})
 
 //delete product => /api/v1/admin/product/:id
 
 
-exports.deleteProduct = async(req, res, next)=> {
+exports.deleteProduct = catchAsyncErrors (async(req, res, next)=> {
     let product = Product.findById(req.params.id);
 
     if(!product){
@@ -77,4 +81,4 @@ exports.deleteProduct = async(req, res, next)=> {
     }
 
     
-}
+})
