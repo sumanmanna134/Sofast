@@ -12,4 +12,7 @@ State Management(Mobile) : [MobX](),[RxDart]().
 
 Dependency Injection : [Provider]()
 
+## Developer Mode 
+
+
 <!-- ## API -->

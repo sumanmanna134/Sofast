@@ -16,6 +16,7 @@
     "mongoose": "^5.12.7"
   },
   "devDependencies": {
+    "jshint": "^2.12.0",
     "nodemon": "^2.0.7"
   }
 }
