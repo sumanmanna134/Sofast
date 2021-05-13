@@ -47,7 +47,7 @@ exports.loginUser = catchAsyncError(async (req, res, next)=> {
     const user = await User.findOne({email}).select('+password')
 
     if(!user){
-        return next(ErrorHandler('Invalid Email or password', 401));
+        return next(new ErrorHandler('Invalid Email or password', 401));
     }
 
     const isPasswordMatched = await user.comparePassword(password);
@@ -57,4 +57,18 @@ exports.loginUser = catchAsyncError(async (req, res, next)=> {
     }
 
     sendToken(user, 200, res);
+})
+
+//logout user => /api/v1/logout
+
+exports.logout = catchAsyncError(async (req, res, next)=>{
+    res.cookie('token', null , {
+        expires : new Date(Date.now()),
+        httpOnly : true
+    })
+
+    res.status(200).json({
+        success: true,
+        message: "Successfully loggedout!"
+    })
 })
